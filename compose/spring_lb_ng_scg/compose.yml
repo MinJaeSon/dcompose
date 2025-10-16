@@ -26,7 +26,7 @@ services:
 
   blog:
     # build: ../../docker_file/httpd
-    image: minjaeson/spring-rest-api:0.3.0
+    image: datamario24/spring-rest-api:0.3.1
     ports:
       - "8765:8080"
     deploy:
