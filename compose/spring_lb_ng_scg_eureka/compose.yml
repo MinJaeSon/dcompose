@@ -24,7 +24,6 @@ services:
       - sc-eureka
     environment:
       - HELLO_SERVICE_URI=http://awsgoo-blog-1:8080
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://sc-eureka:8765/eureka
 
   sc-eureka:
     image: minjaeson/sc-eureka:0.2.0
