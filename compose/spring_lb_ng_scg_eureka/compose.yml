@@ -16,7 +16,7 @@ services:
           memory: 20M
 
   scg-proxy:
-    image: datamario24/sc-gateway:0.4.0
+    image: minjaeson/sc-gateway:0.3.0
     ports:
       - "9000:9000"
     depends_on:
@@ -27,7 +27,7 @@ services:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://sc-eureka:8765/eureka
 
   sc-eureka:
-    image: datamario24/sc-eureka:0.1.0
+    image: minjaeson/sc-eureka:0.2.0
     container_name: sc-eureka
     ports:
       - "8765:8765"
@@ -35,7 +35,7 @@ services:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://sc-eureka:8765/eureka
 
   sc-user-svc:
-    image: datamario24/sc-user-svc:0.1.0
+    image: minjaeson/sc-user-svc:0.1.0
     #container_name: sc-user-svc
     #ports:
     #  - "9001:9001"
@@ -44,6 +44,10 @@ services:
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://sc-eureka:8765/eureka
       - SERVER_PORT=9001
+      - CPU_STRESS_NUMBER=500
+      - LOGGING_LEVEL_ROOT=INFO
+      - LOGGING_LEVEL_COM_EXAMPLE_USER_SERVICE=DEBUG # 사용자 패키지를 DEBUG로 설정
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB=DEBUG  # Spring Web 관련 로그를 상세히 보고 싶을 때 추가
     deploy:
       mode: replicated
       replicas: 2 # https://docs.docker.com/compose/compose-file/deploy/#replicas
